@@ -1,14 +1,8 @@
 'use strict';
 
 var React = require('react-native');
-
+var DsmDetail = require('./DsmDetail');
 var REQUEST_URL = 'http://dev.adverseevents.io/lev/index/dsm/10';
-
-function newDsm(post, title, date) {
-  this.post_intel = post;
-  this.title = title;
-  this.date = date;
- }
 
 var {
     Image,
@@ -78,28 +72,30 @@ class DsmList extends Component {
        fetch(REQUEST_URL)
        .then((response) => response.json())
        .then((responseData) => {
-          var combinedData = [];
-          for (var i=0; i<responseData.posts.length;i++) {
-            var formattedDsm = new newDsm(responseData.posts[i].post_intel, responseData.titles.title[i], responseData.titles.date[i]);
-            combinedData.push(formattedDsm);
-          }
            this.setState({
-               dataSource: this.state.dataSource.cloneWithRows(combinedData),
+               dataSource: this.state.dataSource.cloneWithRows(responseData.posts),
                isLoading: false
            });
        })
        .done();
    }
 
+  showDsmDetail(dsm) {
+       this.props.navigator.push({
+           title: dsm.title,
+           component: DsmDetail,
+           passProps: {dsm}
+       });
+   }
+
   renderDsm(dsm) {
-    console.log(dsm);
        return (
-            <TouchableHighlight>
+            <TouchableHighlight onPress={() => this.showDsmDetail(dsm)}  underlayColor='#dddddd'>
                 <View>
                     <View style={styles.container}>
                         <View style={styles.rightContainer}>
-                            <Text style={styles.title}>{dsm.title}</Text>
-                            <Text style={styles.author}>{dsm.date}</Text>
+                            <Text style={styles.title}>{dsm.post_title}</Text>
+                            <Text style={styles.author}>{dsm.post_date}</Text>
                         </View>
                     </View>
                     <View style={styles.separator} />
