@@ -15,7 +15,7 @@ var styles = StyleSheet.create({
     }
 });
 
-class Featured extends Component {
+class Recent extends Component {
     render() {
         return (
             <NavigatorIOS
@@ -28,4 +28,4 @@ class Featured extends Component {
     }
 }
 
-module.exports = Featured;
+module.exports = Recent;

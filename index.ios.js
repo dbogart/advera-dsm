@@ -1,8 +1,8 @@
 'use strict';
 
 var React = require('react-native');
-var Recent = require('./Recent');
-var Search = require('./Search');
+var Recent = require('./App/Components/Recent');
+var Search = require('./App/Components/Search');
 
 var {
     AppRegistry,

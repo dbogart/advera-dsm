@@ -21,7 +21,7 @@ var styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: 'white',
         padding: 10
     },
     thumbnail: {
@@ -40,11 +40,13 @@ var styles = StyleSheet.create({
         color: '#656565'
     },
     separator: {
-         height: 1,
-         backgroundColor: '#dddddd'
+        height: 1,
+        width: 410,
+        marginRight: 27,
+        alignSelf: 'center'
     },
     listView: {
-       backgroundColor: '#F5FCFF'
+       backgroundColor: 'white'
     },
     loading: {
        flex: 1,
@@ -98,7 +100,9 @@ class DsmList extends Component {
                             <Text style={styles.author}>{dsm.post_date}</Text>
                         </View>
                     </View>
-                    <View style={styles.separator} />
+                    <Image
+                      style={styles.separator}
+                      source={require('image!separator')} />
                 </View>
             </TouchableHighlight>
        );
